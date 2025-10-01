@@ -44,18 +44,11 @@ class Egreso extends Dato {
   }
 }
 
-const ingresos = [
-  new Ingreso("Salario", 2000.0),
-  new Ingreso("Venta coche", 1500.0),
-  new Ingreso("Freelance", 600.0),
-];
-const egresos = [
-  new Egreso("Renta departamento", 900.0),
-  new Egreso("Ropa", 400.0),
-  new Egreso("Comida", 250.0),
-];
+const ingresos = [];
+const egresos = [];
 
 let cargarApp = () => {
+  cargarDatos();
   cargarCabecero();
   cargarIngresos();
   cargarEgresos();
@@ -135,6 +128,7 @@ const crearIngresoHTML = (ingreso) => {
 const eliminarIngreso = (id) => {
   let indice = ingresos.findIndex((ingreso) => ingreso.idIngreso === id);
   ingresos.splice(indice, 1);
+  guardarDatos();
   cargarCabecero();
   cargarIngresos();
 };
@@ -173,6 +167,7 @@ const crearEgresoHTML = (egreso) => {
 const eliminarEgreso = (id) => {
   let indice = egresos.findIndex((egreso) => egreso.idEgreso === id);
   egresos.splice(indice, 1);
+  guardarDatos();
   cargarCabecero();
   cargarEgresos();
 };
@@ -185,11 +180,13 @@ let agregarDato = () => {
   if (descripcion.value !== "" && valor.value !== "") {
     if (tipo.value === "ingreso") {
       ingresos.push(new Ingreso(descripcion.value, +valor.value));
+      guardarDatos();
       cargarCabecero();
       cargarIngresos();
       limpiarValores(descripcion, valor);
     } else if (tipo.value === "egreso") {
       egresos.push(new Egreso(descripcion.value, +valor.value));
+      guardarDatos();
       cargarCabecero();
       cargarEgresos();
       limpiarValores(descripcion, valor);
@@ -202,4 +199,27 @@ let agregarDato = () => {
 function limpiarValores(desc, valor) {
   desc.value = "";
   valor.value = "";
+}
+
+
+//Agregando localStorage
+const guardarDatos = () => {
+  localStorage.setItem("ingresos", JSON.stringify(ingresos));
+  localStorage.setItem("egresos", JSON.stringify(egresos));
+  
+};
+
+const cargarDatos = () => {
+  let datosIngresos = JSON.parse(localStorage.getItem("ingresos"));
+  let datosEgresos = JSON.parse(localStorage.getItem("egresos"));
+  if (datosIngresos) {
+    for (let ingreso of datosIngresos) {
+      ingresos.push(new Ingreso(ingreso._descripcion, ingreso._valor));
+    }
+  }
+  if (datosEgresos) {
+    for (let egreso of datosEgresos) {
+      egresos.push(new Egreso(egreso._descripcion, egreso._valor));
+    }
+  }
 }
