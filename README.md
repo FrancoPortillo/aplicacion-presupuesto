@@ -19,7 +19,7 @@ Aplicación web para gestionar ingresos y egresos personales. Permite agregar, e
 
 ## Demo
 
-![Captura de pantalla]()
+![Captura de pantalla](images/demo.png)
 
 ## Tecnologías
 
