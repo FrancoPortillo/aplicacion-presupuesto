@@ -73,6 +73,9 @@ let totalEgresos = () => {
 let cargarCabecero = () => {
   let presupuesto = totalIngresos() - totalEgresos();
   let porcentajeEgreso = totalEgresos() / totalIngresos();
+  if (porcentajeEgreso === Infinity || isNaN(porcentajeEgreso)) {
+    porcentajeEgreso = 0;
+  }
   document.getElementById("presupuesto").innerHTML = formatoMoneda(presupuesto);
   document.getElementById("porcentaje").innerHTML =
     formatoPorcentaje(porcentajeEgreso);
@@ -177,7 +180,7 @@ let agregarDato = () => {
   let tipo = forma["tipo"];
   let descripcion = forma["descripcion"];
   let valor = forma["valor"];
-  if (descripcion.value !== "" && valor.value !== "") {
+  if (descripcion.value !== "" && valor.value !== "" && +valor.value > 0) {
     if (tipo.value === "ingreso") {
       ingresos.push(new Ingreso(descripcion.value, +valor.value));
       guardarDatos();
