@@ -10,15 +10,6 @@
     clear: both;
 }
 
-body {
-    color: #555;
-    font-family: Open Sans;
-    font-size: 16px;
-    position: relative;
-    height: 100vh;
-    font-weight: 400;
-}
-
 .derecha { float: right; }
 .rojo { color: #FF5049 !important; }
 .rojofocus:focus { border: 1px solid #FF5049 !important; }
@@ -105,7 +96,6 @@ body {
     border-radius: 3px;
 }
 
-
 .agregar {
     padding: 14px;
     border-bottom: 1px solid #e7e7e7;
@@ -145,9 +135,6 @@ body {
     transition: border 0.3s;
 }
 
-.agregar_descripcion { width: 400px;}
-.agregar_valor { width: 100px;}
-
 .agregar_btn {
     font-size: 35px;
     background: none;
@@ -170,22 +157,6 @@ body {
 }
 
 .agregar_btn:focus { outline: none; }
-
-.contenedor {
-    width: 860px;
-    margin: 60px auto;
-}
-
-.ingreso {
-    float: left;
-    width: 370px;
-    margin-right: 70px;
-}
-
-.egreso {
-    float: left;
-    width: 370px;
-}
 
 h2 {
     text-transform: uppercase;
@@ -252,6 +223,9 @@ h2 {
     line-height: 1;
     display: none;
 }
+.ingreso{
+    margin: 10px 0 20px 0;
+}
 
 .elemento_eliminar--btn:focus { outline: none; }
 .elemento_eliminar--btn:active { transform: translateY(2px); }
@@ -259,3 +233,43 @@ h2 {
 .elemento:hover .elemento_eliminar--btn { display: block; }
 .elemento:hover .elemento_valor { transform: translateX(-20px); }
 .elemento:hover .elemento_porcentaje { transform: translateX(-20px); }
+
+@media screen and (max-width:768px) {
+    .agregar_contenedor {
+        display: flex;
+        flex-wrap: wrap;
+        text-align: initial;
+        justify-content: space-between;
+    }
+    .agregar_descripcion{
+        width:96%;
+    }
+}
+
+@media screen and (min-width:1024px){
+    body {
+    color: #555;
+    font-family: Open Sans;
+    font-size: 16px;
+    position: relative;
+    height: 100vh;
+    font-weight: 400;
+}
+.agregar_descripcion { width: 400px;}
+.agregar_valor { width: 100px;}
+.contenedor {
+    width: 860px;
+    margin: 60px auto;
+}
+
+.ingreso {
+    float: left;
+    width: 370px;
+    margin-right: 70px;
+}
+
+.egreso {
+    float: left;
+    width: 370px;
+}
+}
